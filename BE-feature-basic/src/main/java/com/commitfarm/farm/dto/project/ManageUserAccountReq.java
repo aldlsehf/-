@@ -1,5 +1,8 @@
 package com.commitfarm.farm.dto.project;
 
+import com.commitfarm.farm.domain.enumClass.UserType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,4 +15,5 @@ public class ManageUserAccountReq {
     private String projectName;
     private String userEmail;
     private String userRole;
+    private UserType userType;
 }

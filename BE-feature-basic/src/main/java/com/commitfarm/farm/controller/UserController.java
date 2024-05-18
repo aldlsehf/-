@@ -4,6 +4,7 @@ import com.commitfarm.farm.domain.Users;
 import com.commitfarm.farm.dto.user.CreateUserReq;
 import com.commitfarm.farm.dto.user.LoginReq;
 import com.commitfarm.farm.service.UsersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ public class UserController {
     @Autowired
     private UsersService userService;
 
+    //로그인 api
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginReq loginReq) {
         try {
@@ -29,11 +31,12 @@ public class UserController {
     }
 
 
+    //회원가입 api
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody CreateUserReq createUserReq) {
+    public ResponseEntity<String> signup(@Valid @RequestBody CreateUserReq createUserReq) {
         try {
             userService.createUser(createUserReq);
-            return ResponseEntity.ok("회원가입 성공");
+            return ResponseEntity.ok("User created successfully");
         } catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }

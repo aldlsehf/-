@@ -26,9 +26,6 @@ public class Users {
 
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    private UserType userType;
-
     private boolean isAdmin;
 
     @OneToMany(mappedBy = "user")

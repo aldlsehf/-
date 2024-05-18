@@ -35,6 +35,10 @@ public class Ticket {
     @JoinColumn(name = "developerId")
     private Users developer;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "projectId")
+    private Project project;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 

@@ -5,6 +5,7 @@ import com.commitfarm.farm.dto.user.CreateUserReq;
 import com.commitfarm.farm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsersService {
@@ -19,12 +20,17 @@ public class UsersService {
         }
     }
 
-    public void createUser(CreateUserReq createUserReq) {
+    @Transactional
+    public void createUser(CreateUserReq createUserReq) throws Exception {
+        // 이메일 중복 체크
+        if (userRepository.findByEmail(createUserReq.getEmail()) != null) {
+            throw new Exception("이미 존재하는 이메일입니다");
+        }
+
         Users user = new Users();
         user.setUsername(createUserReq.getUsername());
         user.setPassword(createUserReq.getPassword());
         user.setEmail(createUserReq.getEmail());
-        user.setUserType(createUserReq.getUserType());
         user.setAdmin(false);
 
         userRepository.save(user);

@@ -1,5 +1,6 @@
 package com.commitfarm.farm.domain;
 
+import com.commitfarm.farm.domain.enumClass.UserType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,7 @@ public class Member {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private Users user;
+
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 }

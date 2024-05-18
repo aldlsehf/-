@@ -13,5 +13,5 @@ import java.util.List;
 public class TicketListRes {
 
     @Schema(description = "프로젝트 클릭 -> 모든 티켓 리스트 보여줌")
-    private List<SimpleTicketRes> ticketList;
+    private List<TicketRes> ticketList;
 }
